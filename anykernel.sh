@@ -36,8 +36,6 @@ set_perm_recursive 0 0 750 750 $ramdisk/init* $ramdisk/sbin;
 
 
 # Key select start
-ui_print " "
-ui_print "Swipe up the screen or press any volume key first"
 
 INSTALLER=$(pwd)
 KEYCHECK=$INSTALLER/tools/keycheck
@@ -82,29 +80,36 @@ chooseold() {
   fi
 }
 
-if [ -z $NEW ]; then
-  if keytest; then
-    FUNCTION=choose
-  else
-    FUNCTION=chooseold
+if [ -f /tmp/anykernel/dtbs/*.dtb-custom ]; then
+  if [ -z $NEW ]; then
+    if keytest; then
+      FUNCTION=choose
+    else
+      FUNCTION=chooseold
+      ui_print " "
+      ui_print "Swipe up the screen or press any volume key first"
+      ui_print " "
+      ui_print "- Vol Key Programming -"
+      ui_print "   Press Volume Up Key: "
+      $FUNCTION "UP"
+      ui_print "   Press Volume Down Key: "
+      $FUNCTION "DOWN"
+    fi
     ui_print " "
-    ui_print "- Vol Key Programming -"
-    ui_print "   Press Volume Up Key: "
-    $FUNCTION "UP"
-    ui_print "   Press Volume Down Key: "
-    $FUNCTION "DOWN"
-  fi
-  ui_print " "
-  ui_print "- Select Option -"
-  ui_print "   Choose the big CPU clock rate you want:"
-  ui_print "   Volume Up = 1.95 GHz, Volume Down = 2.2 GHz"
-  if $FUNCTION; then
-    NEW=true
+    ui_print "- Select Option -"
+    ui_print "   Choose the Big CPU clock rate you want:"
+    ui_print "   Volume Up = 1.95 GHz"
+    ui_print "   Volume Down = 2.2 GHz"
+    if $FUNCTION; then
+      NEW=true
+    else
+      NEW=false
+    fi
   else
-    NEW=false
+    ui_print "   Option specified in zipname!"
   fi
 else
-  ui_print "   Option specified in zipname!"
+  NEW=false
 fi
 # Key select end
 
@@ -127,7 +132,7 @@ if [ -f $compressed_image ]; then
 
   # Concatenate all of the dtbs to the kernel
   if $NEW; then
-    cat $compressed_image /tmp/anykernel/dtbs/*.dtb-uc > /tmp/anykernel/Image.gz-dtb;
+    cat $compressed_image /tmp/anykernel/dtbs/*.dtb-custom > /tmp/anykernel/Image.gz-dtb;
   else
     cat $compressed_image /tmp/anykernel/dtbs/*.dtb > /tmp/anykernel/Image.gz-dtb;
   fi
