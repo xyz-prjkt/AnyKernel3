@@ -37,7 +37,7 @@ set_perm_recursive 0 0 750 750 $ramdisk/init* $ramdisk/sbin;
 
 # Key select start
 ui_print " "
-ui_print "Touch the screen first or press any volume key"
+ui_print "Swipe up the screen or press any volume key first"
 
 INSTALLER=$(pwd)
 KEYCHECK=$INSTALLER/tools/keycheck
