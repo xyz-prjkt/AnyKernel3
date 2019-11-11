@@ -4,9 +4,9 @@
 ## AnyKernel setup
 # begin properties
 properties() { '
-kernel.string=Genom Kernel by rama982 @ telegram
+kernel.string=aLn Kernel by alanndz @ telegram and GitHub
 do.devicecheck=1
-do.modules=1
+do.modules=0
 do.cleanup=1
 do.cleanuponabort=0
 device.name1=lavender
@@ -127,12 +127,7 @@ if [ -f $compressed_image ]; then
 
   # Concatenate all of the dtbs to the kernel
   if $NEW; then
-    android_version="$(file_getprop /system/build.prop "ro.build.version.release")";
-    if [ "$android_version" != "10" ]; then
-      cat $compressed_image /tmp/anykernel/dtbs/*.dtb-uc-9 > /tmp/anykernel/Image.gz-dtb;
-    else
-      cat $compressed_image /tmp/anykernel/dtbs/*.dtb-uc-10 > /tmp/anykernel/Image.gz-dtb;
-    fi
+    cat $compressed_image /tmp/anykernel/dtbs/*.dtb-uc > /tmp/anykernel/Image.gz-dtb;
   else
     cat $compressed_image /tmp/anykernel/dtbs/*.dtb > /tmp/anykernel/Image.gz-dtb;
   fi
