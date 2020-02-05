@@ -1,4 +1,4 @@
-NAME ?= aLn-Kernel-for-lavender
+NAME ?= Fusion-Kernel-for-lavender
 DATE := $(shell date "+%Y%m%d-%H%M")
 ZIP := $(NAME)-$(DATE).zip
 

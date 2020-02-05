@@ -4,7 +4,7 @@
 ## AnyKernel setup
 # begin properties
 properties() { '
-kernel.string=aLn Kernel by alanndz @ telegram and GitHub
+kernel.string=Fusion Kernel by alanndz & Nicklas373 @ telegram
 do.devicecheck=1
 do.modules=0
 do.cleanup=1
