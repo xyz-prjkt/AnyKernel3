@@ -4,7 +4,7 @@
 ## AnyKernel setup
 # begin properties
 properties() { '
-kernel.string=Fusion Kernel by alanndz & Nicklas373 @ telegram
+kernel.string=perf Kernel
 do.devicecheck=1
 do.modules=0
 do.systemless=1
